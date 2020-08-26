@@ -8,3 +8,8 @@ An urdf description file of a quadruped robot modeled on mini cheetah. With this
 
 This model was used in champ and achieved good results.
 the champ program https://github.com/chvmp/champ
+
+if you use champ_setup_assistant:   https://github.com/chvmp/champ_setup_assistant
+you should choose the yobotics.urdf
+
+
