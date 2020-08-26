@@ -63,10 +63,9 @@
             <inertial>
                 <origin rpy="0 0 0" xyz="${hip_com_x*front_hind} ${hip_com_y*mirror} ${hip_com_z}"/>
                 <mass value="${hip_mass}"/>
-                <inertia
-                    ixx="${hip_ixx}" ixy="${hip_ixy*mirror*front_hind}" ixz="${hip_ixz*front_hind}"
-                    iyy="${hip_iyy}" iyz="${hip_iyz*mirror}"
-                    izz="${hip_izz}"/>       
+                <inertia ixx="${(1/12) * hip_mass * (hip_width * hip_width + hip_height * hip_height)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * hip_mass * (hip_length * hip_length + hip_height * hip_height)}" iyz="0.0"
+                         izz="${(1/12) * hip_mass * (hip_length * hip_length + hip_width * hip_width)}" />     
             </inertial>
         </link>
 
@@ -114,17 +113,16 @@
             <inertial>
                 <origin rpy="0 0 0" xyz="${thigh_com_x} ${thigh_com_y*mirror} ${thigh_com_z}"/>
                 <mass value="${thigh_mass}"/>
-                <inertia
-                    ixx="${thigh_ixx}" ixy="${thigh_ixy*mirror}" ixz="${thigh_ixz}"
-                    iyy="${thigh_iyy}" iyz="${thigh_iyz*mirror}"
-                    izz="${thigh_izz}"/>       
+                <inertia ixx="${(1/12) * thigh_mass * (thigh_width * thigh_width + thigh_height * thigh_height)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * thigh_mass * (thigh_length * thigh_length + thigh_height * thigh_height)}" iyz="0.0"
+                         izz="${(1/12) * thigh_mass * (thigh_length * thigh_length + thigh_width * thigh_width)}" />     
             </inertial>
         </link>
 
 <!-- //////////////////////calf//////////////////// -->
         <joint name="${name}_calf_joint" type="revolute">
         <!-- <joint name="${name}_calf_joint" type="continuous"> -->
-            <origin rpy="0 0 0" xyz="0 ${calf_offset_y} ${-thigh_length}"/>
+            <origin rpy="0 0 0" xyz="0 ${calf_offset_y} ${-thigh_height}"/>
             <parent link="${name}_thigh"/>
             <child link="${name}_calf"/>
             <axis xyz="0 1 0"/>
@@ -151,17 +149,16 @@
             <inertial>
                 <origin rpy="0 0 0" xyz="${calf_com_x} ${calf_com_y} ${calf_com_z}"/>
                 <mass value="${calf_mass}"/>
-                <inertia
-                    ixx="${calf_ixx}" ixy="${calf_ixy}" ixz="${calf_ixz}"
-                    iyy="${calf_iyy}" iyz="${calf_iyz}"
-                    izz="${calf_izz}"/>       
+                <inertia ixx="${(1/12) * calf_mass * (calf_width * calf_width + calf_height * calf_height)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * calf_mass * (calf_length * calf_length + calf_height * calf_height)}" iyz="0.0"
+                         izz="${(1/12) * calf_mass * (calf_length * calf_length + calf_width * calf_width)}" />    
             </inertial>
         </link>
 
 
 <!-- //////////////////////foot//////////////////// -->
         <joint name="${name}_foot_fixed" type="fixed">
-            <origin rpy="0 0 0" xyz="0 ${foot_offset_y} ${-(calf_length)}"/>     
+            <origin rpy="0 0 0" xyz="0 ${foot_offset_y} ${-(calf_height)}"/>     
             <parent link="${name}_calf"/>
             <child link="${name}_foot"/>
         </joint>
@@ -183,10 +180,9 @@
             <inertial>
                 <origin rpy="0 0 0" xyz="${foot_com_x} ${foot_com_y} ${foot_com_z}"/>
                 <mass value="${foot_mass}"/>
-                <inertia
-                    ixx="${foot_ixx}" ixy="${foot_ixy}" ixz="${foot_ixz}"
-                    iyy="${foot_iyy}" iyz="${foot_iyz}"
-                    izz="${foot_izz}"/>                 
+                <inertia ixx="${(2/5) * foot_mass * ( (foot_radius) * (foot_radius) )}" ixy="0.0" ixz="0.0"
+                         iyy="${(2/5) * foot_mass * ( (foot_radius) * (foot_radius) )}" iyz="0.0"
+                         izz="${(2/5) * foot_mass * ( (foot_radius) * (foot_radius) )}" />          
             </inertial>
         </link>
 
