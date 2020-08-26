@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 set -e
-rosrun xacro xacro yobotics.urdf.xacro > yobotics.urdf
+rosrun xacro xacro ../xacro/robot.xacro > yobotics.urdf
 
