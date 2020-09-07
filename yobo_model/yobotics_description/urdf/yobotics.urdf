@@ -82,25 +82,25 @@
       <topicName>/apply_force/trunk</topicName>
     </plugin>
   </gazebo>
-  <gazebo reference="imu_link">
-    <gravity>true</gravity>
-    <sensor name="imu_sensor" type="imu">
-      <always_on>true</always_on>
-      <update_rate>1000</update_rate>
-      <visualize>true</visualize>
-      <topic>__default_topic__</topic>
-      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-        <topicName>yobotic_imu</topicName>
-        <bodyName>imu_link</bodyName>
-        <updateRateHZ>1000.0</updateRateHZ>
-        <gaussianNoise>0.0</gaussianNoise>
-        <xyzOffset>0 0 0</xyzOffset>
-        <rpyOffset>0 0 0</rpyOffset>
-        <frameName>imu_link</frameName>
-      </plugin>
-      <pose>0 0 0 0 0 0</pose>
-    </sensor>
-  </gazebo>
+  <!-- <gazebo reference="imu_link">
+        <gravity>true</gravity>
+        <sensor name="_sensor" type="imu">
+            <always_on>true</always_on>
+            <update_rate>1000</update_rate>
+            <visualize>true</visualize>
+            <topic>__default_topic__</topic>
+            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                <topicName>yobotic_imu</topicName>
+                <bodyName>imu_link</bodyName>
+                <updateRateHZ>1000.0</updateRateHZ>
+                <gaussianNoise>0.0</gaussianNoise>
+                <xyzOffset>0 0 0</xyzOffset>
+                <rpyOffset>0 0 0</rpyOffset>
+                <frameName>imu_link</frameName>
+            </plugin>
+            <pose>0 0 0 0 0 0</pose>
+        </sensor>
+    </gazebo> -->
   <gazebo>
     <plugin filename="libgazebo_ros_p3d.so" name="p3d_base_controller">
       <alwaysOn>true</alwaysOn>
@@ -327,7 +327,8 @@
         <parent link="base_link"/>
         <child link="trunk"/>
     </joint> -->
-  <link name="trunk">
+  <link name="trunk"/>
+  <link name="trunk_interia">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -336,7 +337,7 @@
       <material name="white_gray"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.04592"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/trunk.STL" scale="1 1 1"/>
         <!-- <box size="${trunk_length} ${trunk_width} ${trunk_height}"/> -->
@@ -348,31 +349,38 @@
       <inertia ixx="0.011253" ixy="0" ixz="0.0" iyy="0.036203" iyz="-0.0" izz="0.042673"/>
     </inertial>
   </link>
-  <joint name="imu_joint" type="fixed">
-    <parent link="trunk"/>
-    <child link="imu_link"/>
+  <joint name="trunk_to_trunk_inertia" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="trunk"/>
+    <child link="trunk_interia"/>
   </joint>
-  <link name="imu_link">
-    <inertial>
-      <mass value="0.001"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <box size="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="red"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <box size=".001 .001 .001"/>
-      </geometry>
-    </collision>
-  </link>
+  <!-- 
+    <joint name="imu_joint" type="fixed">
+        <parent link="trunk"/>
+        <child link="imu_link"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <link name="imu_link">
+        <inertial>
+            <mass value="0.001"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size=".001 .001 .001"/>
+            </geometry>
+        </collision>
+    </link> -->
   <!-- //////////////////////hip//////////////////// -->
   <joint name="RL_hip_joint" type="revolute">
     <!-- <joint name="${name}_hip_joint" type="continuous"> -->
@@ -462,25 +470,25 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.064"/>
-      <inertia ixx="0.000237439744533" ixy="0.0" ixz="0.0" iyy="0.000237439744533" iyz="0.0" izz="2.73066666667e-06"/>
+      <inertia ixx="0.000284456277867" ixy="0.0" ixz="0.0" iyy="0.000284456277867" iyz="0.0" izz="2.73066666667e-06"/>
     </inertial>
   </link>
   <!-- //////////////////////foot//////////////////// -->
   <joint name="RL_foot_fixed" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.0096 -0.21039"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.23039"/>
     <parent link="RL_calf"/>
     <child link="RL_foot"/>
   </joint>
   <link name="RL_foot">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
       </geometry>
       <material name="white_black"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
       </geometry>
@@ -610,25 +618,25 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.064"/>
-      <inertia ixx="0.000237439744533" ixy="0.0" ixz="0.0" iyy="0.000237439744533" iyz="0.0" izz="2.73066666667e-06"/>
+      <inertia ixx="0.000284456277867" ixy="0.0" ixz="0.0" iyy="0.000284456277867" iyz="0.0" izz="2.73066666667e-06"/>
     </inertial>
   </link>
   <!-- //////////////////////foot//////////////////// -->
   <joint name="FL_foot_fixed" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.0096 -0.21039"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.23039"/>
     <parent link="FL_calf"/>
     <child link="FL_foot"/>
   </joint>
   <link name="FL_foot">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
       </geometry>
       <material name="white_black"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
       </geometry>
@@ -758,25 +766,25 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.064"/>
-      <inertia ixx="0.000237439744533" ixy="0.0" ixz="0.0" iyy="0.000237439744533" iyz="0.0" izz="2.73066666667e-06"/>
+      <inertia ixx="0.000284456277867" ixy="0.0" ixz="0.0" iyy="0.000284456277867" iyz="0.0" izz="2.73066666667e-06"/>
     </inertial>
   </link>
   <!-- //////////////////////foot//////////////////// -->
   <joint name="RR_foot_fixed" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.0096 -0.21039"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.23039"/>
     <parent link="RR_calf"/>
     <child link="RR_foot"/>
   </joint>
   <link name="RR_foot">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
       </geometry>
       <material name="white_black"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
       </geometry>
@@ -906,25 +914,25 @@
     <inertial>
       <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
       <mass value="0.064"/>
-      <inertia ixx="0.000237439744533" ixy="0.0" ixz="0.0" iyy="0.000237439744533" iyz="0.0" izz="2.73066666667e-06"/>
+      <inertia ixx="0.000284456277867" ixy="0.0" ixz="0.0" iyy="0.000284456277867" iyz="0.0" izz="2.73066666667e-06"/>
     </inertial>
   </link>
   <!-- //////////////////////foot//////////////////// -->
   <joint name="FR_foot_fixed" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0.0096 -0.21039"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.23039"/>
     <parent link="FR_calf"/>
     <child link="FR_foot"/>
   </joint>
   <link name="FR_foot">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
       </geometry>
       <material name="white_black"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
       <geometry>
         <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
       </geometry>
@@ -965,5 +973,180 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <joint name="hokuyo_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.09375"/>
+    <parent link="trunk"/>
+    <child link="hokuyo_frame"/>
+  </joint>
+  <link name="hokuyo_frame">
+    <inertial>
+      <mass value="0.270"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.632e-4" ixy="0" ixz="0" iyy="2.632e-4" iyz="0" izz="1.62e-4"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hector_sensors_description/meshes/hokuyo_utm30lx/hokuyo_utm_30lx.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.0115"/>
+      <geometry>
+        <box size="0.058 0.058 0.087"/>
+        <!--<mesh filename="package://hector_sensors_description/meshes/hokuyo_utm30lx/hokuyo_utm_30lx.stl"/>-->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="hokuyo_frame">
+    <sensor name="hokuyo" type="ray">
+      <always_on>true</always_on>
+      <update_rate>30</update_rate>
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>1040</samples>
+            <resolution>1</resolution>
+            <min_angle>2.26892802759</min_angle>
+            <max_angle>-2.26892802759</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.2</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.004</stddev>
+        </noise>
+      </ray>
+      <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_hokuyo_controller">
+        <topicName>scan</topicName>
+        <frameName>hokuyo_frame</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <gazebo reference="hokuyo_frame">
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+  <joint name="camera_joint" type="fixed">
+    <origin rpy="0 0.261799612195482 0" xyz="0.1 0.0 -0.06"/>
+    <parent link="trunk"/>
+    <child link="camera_link"/>
+  </joint>
+  <link name="camera_link">
+    <inertial>
+      <mass value="0.200"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="5.8083e-4" ixy="0" ixz="0" iyy="3.0833e-5" iyz="0" izz="5.9083e-4"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hector_sensors_description/meshes/asus_camera/asus_camera_simple.dae"/>
+      </geometry>
+    </visual>
+    <!--        
+       <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <box size="0.035 0.185 0.025"/>
+          </geometry>
+        </collision>
+        -->
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://hector_sensors_description/meshes/asus_camera/asus_camera_simple.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="camera_depth_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.049 0.0"/>
+    <parent link="camera_link"/>
+    <child link="camera_depth_frame"/>
+  </joint>
+  <link name="camera_depth_frame"/>
+  <joint name="camera_depth_optical_joint" type="fixed">
+    <origin rpy="-1.57079632679 0.0 -1.57079632679" xyz="0 0 0"/>
+    <parent link="camera_depth_frame"/>
+    <child link="camera_depth_optical_frame"/>
+  </joint>
+  <link name="camera_depth_optical_frame"/>
+  <joint name="camera_rgb_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.022 0.0"/>
+    <parent link="camera_link"/>
+    <child link="camera_rgb_frame"/>
+  </joint>
+  <link name="camera_rgb_frame"/>
+  <joint name="camera_rgb_optical_joint" type="fixed">
+    <origin rpy="-1.57079632679 0.0 -1.57079632679" xyz="0 0 0"/>
+    <parent link="camera_rgb_frame"/>
+    <child link="camera_rgb_optical_frame"/>
+  </joint>
+  <link name="camera_rgb_optical_frame"/>
+  <!-- ASUS Xtion PRO camera for simulation -->
+  <gazebo reference="camera_depth_frame">
+    <sensor name="camera" type="depth">
+      <update_rate>20</update_rate>
+      <camera>
+        <horizontal_fov>1.09606677025</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.5</near>
+          <far>9</far>
+        </clip>
+      </camera>
+      <plugin filename="libgazebo_ros_openni_kinect.so" name="camera_camera_controller">
+        <imageTopicName>camera/rgb/image_raw</imageTopicName>
+        <cameraInfoTopicName>camera/rgb/camera_info</cameraInfoTopicName>
+        <depthImageTopicName>camera/depth/image_raw</depthImageTopicName>
+        <depthImageCameraInfoTopicName>camera/depth/camera_info</depthImageCameraInfoTopicName>
+        <pointCloudTopicName>camera/depth/points</pointCloudTopicName>
+        <frameName>camera_depth_optical_frame</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <gazebo>
+    <plugin filename="libhector_gazebo_ros_imu.so" name="imu_controller">
+      <updateRate>50.0</updateRate>
+      <bodyName>imu_link</bodyName>
+      <topicName>imu/data</topicName>
+      <accelDrift>0.005 0.005 0.005</accelDrift>
+      <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+      <rateDrift>0.005 0.005 0.005 </rateDrift>
+      <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+      <headingDrift>0.005</headingDrift>
+      <headingGaussianNoise>0.005</headingGaussianNoise>
+    </plugin>
+  </gazebo>
+  <link name="imu_link">
+    <inertial>
+      <mass value="0.001"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1e-09" ixy="0.0" ixz="0.0" iyy="1e-09" iyz="0.0" izz="1e-09"/>
+    </inertial>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <parent link="trunk"/>
+    <child link="imu_link"/>
+  </joint>
+  <!-- <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+    <xacro:VLP-16 parent="trunk" name="velodyne" topic="velodyne_points" hz="10" samples="1024" gpu="false" lasers="16" max_range="100">
+        <origin xyz="0 0 ${base_z_length / 2}" rpy="0 0 0" />
+    </xacro:VLP-16>
+
+    <xacro:include filename="$(find champ_arm_description)/urdf/champ_arm.urdf.xacro" />
+    <xacro:champ_arm parent="trunk">
+        <origin xyz="0.07 0.0 ${base_z_length / 2}" rpy="0 0 0"/>
+    </xacro:champ_arm> -->
 </robot>
 

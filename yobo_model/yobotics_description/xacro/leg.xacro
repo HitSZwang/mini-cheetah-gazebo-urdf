@@ -158,21 +158,21 @@
 
 <!-- //////////////////////foot//////////////////// -->
         <joint name="${name}_foot_fixed" type="fixed">
-            <origin rpy="0 0 0" xyz="0 ${foot_offset_y} ${-(calf_height)}"/>     
+            <origin rpy="0 0 0" xyz="0 0 ${-(calf_height)}"/>     
             <parent link="${name}_calf"/>
             <child link="${name}_foot"/>
         </joint>
 
         <link name="${name}_foot">
             <visual>
-                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
                 <geometry>
                      <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
                 </geometry>
                 <material name="white_black"/>
             </visual>
             <collision>
-                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <origin rpy="0 0 0" xyz="0 0.009 0.02"/>
                 <geometry>
                     <mesh filename="package://yobotics_description/meshes/foot.STL" scale="1 1 1"/>
                 </geometry>
