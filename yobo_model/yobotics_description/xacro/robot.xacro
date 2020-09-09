@@ -37,8 +37,8 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-               <mesh filename="package://yobotics_description/meshes/trunk.STL" scale="1 1 1"/>
-               <!-- <box size="${trunk_length} ${trunk_width} ${trunk_height}"/> -->
+               <!-- <mesh filename="package://yobotics_description/meshes/trunk.STL" scale="1 1 1"/> -->
+               <box size="${trunk_length} ${trunk_width} ${trunk_height}"/>
             </geometry>
         </collision>
         <inertial>
