@@ -4,7 +4,9 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /Global Options1
         - /Grid1
+        - /TF1
         - /TF1/Frames1
       Splitter Ratio: 0.38333332538604736
     Tree Height: 845
@@ -61,12 +63,83 @@ Visualization Manager:
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
-        Link Tree Style: Links in Alphabetic Order
-        base_inertia:
+        FL_calf:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        base_link:
+          Value: true
+        FL_foot:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FL_hip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FL_thigh:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FR_calf:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FR_foot:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FR_hip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        FR_thigh:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        Link Tree Style: Links in Alphabetic Order
+        RL_calf:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RL_foot:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RL_hip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RL_thigh:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RR_calf:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RR_foot:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RR_hip:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        RR_thigh:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -101,94 +174,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        lf_foot_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        lf_hip_debug_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        lf_hip_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lf_lower_leg_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lf_upper_leg_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lh_foot_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        lh_hip_debug_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        lh_hip_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lh_lower_leg_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lh_upper_leg_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rf_foot_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        rf_hip_debug_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        rf_hip_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rf_lower_leg_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rf_upper_leg_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rh_foot_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        rh_hip_debug_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        rh_hip_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rh_lower_leg_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rh_upper_leg_link:
+        trunk:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -211,11 +197,37 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_footprint:
+        FL_calf:
           Value: true
-        base_inertia:
+        FL_foot:
           Value: true
-        base_link:
+        FL_hip:
+          Value: true
+        FL_thigh:
+          Value: true
+        FR_calf:
+          Value: true
+        FR_foot:
+          Value: true
+        FR_hip:
+          Value: true
+        FR_thigh:
+          Value: true
+        RL_calf:
+          Value: true
+        RL_foot:
+          Value: true
+        RL_hip:
+          Value: true
+        RL_thigh:
+          Value: true
+        RR_calf:
+          Value: true
+        RR_foot:
+          Value: true
+        RR_hip:
+          Value: true
+        RR_thigh:
           Value: true
         camera_depth_frame:
           Value: true
@@ -231,98 +243,46 @@ Visualization Manager:
           Value: true
         imu_link:
           Value: true
-        lf_foot_link:
-          Value: true
-        lf_hip_debug_link:
-          Value: true
-        lf_hip_link:
-          Value: true
-        lf_lower_leg_link:
-          Value: true
-        lf_upper_leg_link:
-          Value: true
-        lh_foot_link:
-          Value: true
-        lh_hip_debug_link:
-          Value: true
-        lh_hip_link:
-          Value: true
-        lh_lower_leg_link:
-          Value: true
-        lh_upper_leg_link:
-          Value: true
-        odom:
-          Value: true
-        rf_foot_link:
-          Value: true
-        rf_hip_debug_link:
-          Value: true
-        rf_hip_link:
-          Value: true
-        rf_lower_leg_link:
-          Value: true
-        rf_upper_leg_link:
-          Value: true
-        rh_foot_link:
-          Value: true
-        rh_hip_debug_link:
-          Value: true
-        rh_hip_link:
-          Value: true
-        rh_lower_leg_link:
-          Value: true
-        rh_upper_leg_link:
+        trunk:
           Value: true
       Marker Scale: 0.25
       Name: TF
       Show Arrows: true
-      Show Axes: false
+      Show Axes: true
       Show Names: false
       Tree:
-        odom:
-          base_footprint:
-            base_link:
-              base_inertia:
+        trunk:
+          FL_hip:
+            FL_thigh:
+              FL_calf:
+                FL_foot:
+                  {}
+          FR_hip:
+            FR_thigh:
+              FR_calf:
+                FR_foot:
+                  {}
+          RL_hip:
+            RL_thigh:
+              RL_calf:
+                RL_foot:
+                  {}
+          RR_hip:
+            RR_thigh:
+              RR_calf:
+                RR_foot:
+                  {}
+          camera_link:
+            camera_depth_frame:
+              camera_depth_optical_frame:
                 {}
-              camera_link:
-                camera_depth_frame:
-                  camera_depth_optical_frame:
-                    {}
-                camera_rgb_frame:
-                  camera_rgb_optical_frame:
-                    {}
-              hokuyo_frame:
+            camera_rgb_frame:
+              camera_rgb_optical_frame:
                 {}
-              imu_link:
-                {}
-              lf_hip_debug_link:
-                {}
-              lf_hip_link:
-                lf_upper_leg_link:
-                  lf_lower_leg_link:
-                    lf_foot_link:
-                      {}
-              lh_hip_debug_link:
-                {}
-              lh_hip_link:
-                lh_upper_leg_link:
-                  lh_lower_leg_link:
-                    lh_foot_link:
-                      {}
-              rf_hip_debug_link:
-                {}
-              rf_hip_link:
-                rf_upper_leg_link:
-                  rf_lower_leg_link:
-                    rf_foot_link:
-                      {}
-              rh_hip_debug_link:
-                {}
-              rh_hip_link:
-                rh_upper_leg_link:
-                  rh_lower_leg_link:
-                    rh_foot_link:
-                      {}
+          hokuyo_frame:
+            {}
+          imu_link:
+            {}
       Update Interval: 0
       Value: true
     - Class: rviz/MarkerArray
@@ -352,7 +312,7 @@ Visualization Manager:
   Global Options:
     Background Color: 238; 238; 236
     Default Light: true
-    Fixed Frame: /odom
+    Fixed Frame: trunk
     Frame Rate: 30
   Name: root
   Tools:
@@ -376,7 +336,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 4.856288433074951
+      Distance: 1.8748247623443604
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -391,10 +351,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.29539817571640015
+      Pitch: -0.19960175454616547
       Target Frame: base_footprint
       Value: Orbit (rviz)
-      Yaw: 2.140366792678833
+      Yaw: 1.800366759300232
     Saved: ~
 Window Geometry:
   Displays:

@@ -25,7 +25,8 @@
         <child link="trunk"/>
     </joint> -->
 
-    <link name="trunk">
+    <link name="trunk"/>
+    <link name="trunk_interia">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
@@ -34,10 +35,10 @@
             <material name="white_gray"/>
         </visual>
         <collision>
-            <origin rpy="0 0 0" xyz="0 0 ${trunk_offset_z}"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-               <mesh filename="package://yobotics_description/meshes/trunk.STL" scale="1 1 1"/>
-               <!-- <box size="${trunk_length} ${trunk_width} ${trunk_height}"/> -->
+               <!-- <mesh filename="package://yobotics_description/meshes/trunk.STL" scale="1 1 1"/> -->
+               <box size="${trunk_length} ${trunk_width} ${trunk_height}"/>
             </geometry>
         </collision>
         <inertial>
@@ -49,8 +50,13 @@
                 izz="${trunk_izz}"/>  
         </inertial>
     </link>
+   <joint name="trunk_to_trunk_inertia" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="trunk"/>
+        <child link="trunk_interia"/>
+    </joint>
 
-
+<!-- 
     <joint name="imu_joint" type="fixed">
         <parent link="trunk"/>
         <child link="imu_link"/>
@@ -76,7 +82,7 @@
                 <box size=".001 .001 .001"/>
             </geometry>
         </collision>
-    </link>
+    </link> -->
     
     <xacro:leg name="RL" mirror="-1" mirror_dae="False" front_hind="1" front_hind_dae="True">
         <origin rpy="0 0 0" xyz="${leg_offset_x} ${-leg_offset_y} 0"/>
@@ -96,4 +102,5 @@
         <origin rpy="0 0 0" xyz="${-leg_offset_x} ${leg_offset_y} 0"/>
     </xacro:leg>
 
+    <xacro:include filename="$(find yobotics_description)/xacro/accessories.urdf.xacro" />
 </robot>

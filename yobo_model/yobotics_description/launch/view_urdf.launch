@@ -1,5 +1,5 @@
 <launch>
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find yobotics_description)/urdf/yobotics.urdf.xacro' " />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find yobotics_description)/urdf/yobotics.urdf' " />
     <node name="yobotics_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
         <param name="publish_frequency" type="double" value="30.0" />
         <param name="ignore_timestamp" type="bool" value="true" />
